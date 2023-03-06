@@ -12,7 +12,6 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
-    isSaveButtonDisabled: true,
   };
 
   handleChange = ({ target }) => {
@@ -33,8 +32,21 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      isSaveButtonDisabled,
     } = this.state;
+
+    const sumAttribute = 210;
+    const maxAttribute = 90;
+    const isFromValid = cardName.length > 0
+      && cardDescription.length > 0
+      && cardImage.length > 0
+      && cardRare.length > 0
+      && Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= sumAttribute
+      && Number(cardAttr1) <= maxAttribute
+      && Number(cardAttr2) <= maxAttribute
+      && Number(cardAttr3) <= maxAttribute
+      && Number(cardAttr1) >= 0
+      && Number(cardAttr2) >= 0
+      && Number(cardAttr3) >= 0;
 
     return (
       <div>
@@ -49,7 +61,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
+          isSaveButtonDisabled={ !isFromValid }
         />
         <Card
           cardName={ cardName }
