@@ -28,6 +28,7 @@ class Form extends Component {
             inputType="text"
             inputEvent={ onInputChange }
             inputValue={ cardName }
+            inputName="cardName"
           />
           <FormInput
             labelName="card-description"
@@ -36,6 +37,7 @@ class Form extends Component {
             inputType="textarea"
             inputEvent={ onInputChange }
             inputValue={ cardDescription }
+            inputName="cardDescription"
           />
           <FormInput
             labelName="card-attribute1"
@@ -44,6 +46,7 @@ class Form extends Component {
             inputType="number"
             inputEvent={ onInputChange }
             inputValue={ cardAttr1 }
+            inputName="cardAttr1"
           />
           <FormInput
             labelName="card-attribute2"
@@ -52,6 +55,7 @@ class Form extends Component {
             inputType="number"
             inputEvent={ onInputChange }
             inputValue={ cardAttr2 }
+            inputName="cardAttr2"
           />
           <FormInput
             labelName="card-attribute3"
@@ -60,6 +64,7 @@ class Form extends Component {
             inputType="number"
             inputEvent={ onInputChange }
             inputValue={ cardAttr3 }
+            inputName="cardAttr3"
           />
           <FormInput
             labelName="card-image"
@@ -68,6 +73,7 @@ class Form extends Component {
             inputType="text"
             inputEvent={ onInputChange }
             inputValue={ cardImage }
+            inputName="cardImage"
           />
           <label htmlFor="card-rarity">
             Raridade:
@@ -76,6 +82,7 @@ class Form extends Component {
               id="card-rarity"
               onChange={ onInputChange }
               value={ cardRare }
+              name="cardRare"
             >
               <option>normal</option>
               <option>raro</option>
@@ -89,6 +96,7 @@ class Form extends Component {
             inputType="checkbox"
             inputEvent={ onInputChange }
             inputValue={ cardTrunfo }
+            inputName="cardTrunfo"
           />
           <input
             type="button"

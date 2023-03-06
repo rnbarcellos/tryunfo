@@ -8,7 +8,9 @@ class FormInput extends Component {
       testId,
       fieldName,
       inputValue,
-      inputEvent } = this.props;
+      inputEvent,
+      inputName,
+    } = this.props;
 
     return (
       <label htmlFor={ labelName }>
@@ -19,6 +21,7 @@ class FormInput extends Component {
             id={ labelName }
             value={ inputValue }
             onChange={ inputEvent }
+            name={ inputName }
           />
         ) : (
           <input
@@ -28,6 +31,7 @@ class FormInput extends Component {
             value={ inputValue }
             checked={ inputType === 'checkbox' ? inputValue : null }
             onChange={ inputEvent }
+            name={ inputName }
           />
         )}
       </label>
@@ -40,6 +44,7 @@ FormInput.propTypes = {
   inputType: PropTypes.string,
   testId: PropTypes.string,
   fieldName: PropTypes.string,
+  inputName: PropTypes.string,
 }.isRequired;
 
 export default FormInput;
