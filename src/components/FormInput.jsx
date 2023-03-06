@@ -3,14 +3,33 @@ import PropTypes from 'prop-types';
 
 class FormInput extends Component {
   render() {
-    const { labelName, inputType, testId, fieldName } = this.props;
+    const { labelName,
+      inputType,
+      testId,
+      fieldName,
+      inputValue,
+      inputEvent } = this.props;
 
     return (
       <label htmlFor={ labelName }>
         {fieldName}
-        {inputType === 'textarea'
-          ? <textarea data-testid={ testId } id={ labelName } />
-          : <input type={ inputType } data-testid={ testId } id={ labelName } />}
+        {inputType === 'textarea' ? (
+          <textarea
+            data-testid={ testId }
+            id={ labelName }
+            value={ inputValue }
+            onChange={ inputEvent }
+          />
+        ) : (
+          <input
+            type={ inputType }
+            data-testid={ testId }
+            id={ labelName }
+            value={ inputValue }
+            checked={ inputType === 'checkbox' ? inputValue : null }
+            onChange={ inputEvent }
+          />
+        )}
       </label>
     );
   }
