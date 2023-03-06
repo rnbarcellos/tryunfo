@@ -71,11 +71,12 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      deck,
     } = this.state;
 
     const sumAttribute = 210;
     const maxAttribute = 90;
-    const isFromValid = cardName.length > 0
+    const isFormValid = cardName.length > 0
       && cardDescription.length > 0
       && cardImage.length > 0
       && cardRare.length > 0
@@ -86,6 +87,8 @@ class App extends React.Component {
       && Number(cardAttr1) >= 0
       && Number(cardAttr2) >= 0
       && Number(cardAttr3) >= 0;
+
+    const validateTrunfo = deck.some((card) => card.cardTrunfo === true);
 
     return (
       <div>
@@ -100,8 +103,9 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ !isFromValid }
+          isSaveButtonDisabled={ !isFormValid }
           onSaveButtonClick={ this.handleClick }
+          hasTrunfo={ validateTrunfo }
         />
         <Card
           cardName={ cardName }
