@@ -6,12 +6,13 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: 0,
+    cardAttr2: 0,
+    cardAttr3: 0,
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
+    deck: [],
   };
 
   handleChange = ({ target }) => {
@@ -19,6 +20,44 @@ class App extends React.Component {
     const valueToUpdate = type === 'checkbox' ? checked : value;
     this.setState({
       [name]: valueToUpdate,
+    });
+  };
+
+  handleClick = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      deck,
+    } = this.state;
+
+    const cardInfo = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+    const updatedDeck = [...deck, cardInfo];
+
+    this.setState({
+      deck: updatedDeck,
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
     });
   };
 
@@ -62,6 +101,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ !isFromValid }
+          onSaveButtonClick={ this.handleClick }
         />
         <Card
           cardName={ cardName }
