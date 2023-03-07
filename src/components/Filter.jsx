@@ -6,6 +6,7 @@ class Filter extends Component {
     const {
       onInputChange,
       nameFilter,
+      rareFilter,
     } = this.props;
 
     return (
@@ -19,6 +20,17 @@ class Filter extends Component {
           name="nameFilter"
           placeholder="Digite uma carta"
         />
+        <select
+          data-testid="rare-filter"
+          value={ rareFilter }
+          onChange={ onInputChange }
+          name="rareFilter"
+        >
+          <option defaultValue="todas">todas</option>
+          <option>normal</option>
+          <option>raro</option>
+          <option>muito raro</option>
+        </select>
       </fieldset>
     );
   }
@@ -26,6 +38,8 @@ class Filter extends Component {
 
 Filter.propTypes = {
   onInputChange: PropTypes.string,
+  rareFilter: PropTypes.string,
+  nameFilter: PropTypes.string,
 }.isRequired;
 
 export default Filter;

@@ -83,6 +83,7 @@ class App extends React.Component {
       cardTrunfo,
       deck,
       nameFilter,
+      rareFilter,
     } = this.state;
 
     const sumAttribute = 210;
@@ -130,10 +131,16 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <Filter nameFilter={ nameFilter } onInputChange={ this.handleChange } />
+        <Filter
+          nameFilter={ nameFilter }
+          rareFilter={ rareFilter }
+          onInputChange={ this.handleChange }
+        />
         <div className="card-list">
           {deck
             .filter((card) => card.cardName.includes(nameFilter))
+            .filter((card) => (rareFilter === 'todas'
+              ? true : card.cardRare === rareFilter))
             .map((card) => (
               <div key={ card.cardName }>
                 <Card
