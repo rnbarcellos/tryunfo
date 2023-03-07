@@ -16,7 +16,7 @@ class Card extends Component {
 
     return (
       <section className="card-preview">
-        <h2 data-testid="name-card">{`Nome: ${cardName}`}</h2>
+        <h2 data-testid="name-card">{ cardName }</h2>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <p data-testid="description-card">{`Descrição: ${cardDescription}`}</p>
         <h3 data-testid="attr1-card">{`Atributo 1: ${cardAttr1}`}</h3>
