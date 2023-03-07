@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   state = {
@@ -13,6 +14,7 @@ class App extends React.Component {
     cardRare: 'normal',
     cardTrunfo: false,
     deck: [],
+    nameFilter: '',
   };
 
   handleChange = ({ target }) => {
@@ -80,6 +82,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       deck,
+      nameFilter,
     } = this.state;
 
     const sumAttribute = 210;
@@ -127,27 +130,30 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
+        <Filter nameFilter={ nameFilter } onInputChange={ this.handleChange } />
         <div className="card-list">
-          {deck.map((card) => (
-            <div key={ card.cardName }>
-              <Card
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
-              <input
-                type="button"
-                value="Excluir"
-                data-testid="delete-button"
-                onClick={ () => this.handleClickDelete(card.cardName) }
-              />
-            </div>
-          ))}
+          {deck
+            .filter((card) => card.cardName.includes(nameFilter))
+            .map((card) => (
+              <div key={ card.cardName }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <input
+                  type="button"
+                  value="Excluir"
+                  data-testid="delete-button"
+                  onClick={ () => this.handleClickDelete(card.cardName) }
+                />
+              </div>
+            ))}
         </div>
       </div>
     );
