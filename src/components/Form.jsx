@@ -95,7 +95,7 @@ class Form extends Component {
           ) : (
             <FormInput
               labelName="is-trumph"
-              fieldName="Super Trunfo: "
+              fieldName="Super Trunfo? "
               testId="trunfo-input"
               inputType="checkbox"
               inputEvent={ onInputChange }

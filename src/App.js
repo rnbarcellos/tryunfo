@@ -61,6 +61,14 @@ class App extends React.Component {
     });
   };
 
+  handleClickDelete = (element) => {
+    const { deck } = this.state;
+    const currentDeck = [...deck];
+    const cardToRemove = currentDeck.filter((card) => card.cardName !== element);
+
+    this.setState({ deck: cardToRemove });
+  };
+
   render() {
     const {
       cardName,
@@ -121,17 +129,24 @@ class App extends React.Component {
         </div>
         <div className="card-list">
           {deck.map((card) => (
-            <Card
-              key={ card.cardName }
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
+            <div key={ card.cardName }>
+              <Card
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+              <input
+                type="button"
+                value="Excluir"
+                data-testid="delete-button"
+                onClick={ () => this.handleClickDelete(card.cardName) }
+              />
+            </div>
           ))}
         </div>
       </div>
