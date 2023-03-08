@@ -101,7 +101,10 @@ class App extends React.Component {
       && Number(cardAttr3) <= maxAttribute
       && Number(cardAttr1) >= 0
       && Number(cardAttr2) >= 0
-      && Number(cardAttr3) >= 0;
+      && Number(cardAttr3) >= 0
+      && cardAttr1.length > 0
+      && cardAttr2.length > 0
+      && cardAttr3.length > 0;
 
     const validateTrunfo = deck.some((card) => card.cardTrunfo === true);
 
