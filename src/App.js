@@ -141,31 +141,52 @@ class App extends React.Component {
           trunfoFilter={ trunfoFilter }
         />
         <div className="card-list">
-          {deck
-            .filter((card) => (rareFilter === 'todas'
-              ? true : card.cardRare === rareFilter))
-            .filter((card) => card.cardName.includes(nameFilter))
-            .filter((card) => card.cardTrunfo === trunfoFilter)
-            .map((card) => (
-              <div key={ card.cardName }>
+          {trunfoFilter ? deck
+            .filter((card) => card.cardTrunfo === true)
+            .map((trunfo) => (
+              <div key={ trunfo.cardName }>
                 <Card
-                  cardName={ card.cardName }
-                  cardDescription={ card.cardDescription }
-                  cardAttr1={ card.cardAttr1 }
-                  cardAttr2={ card.cardAttr2 }
-                  cardAttr3={ card.cardAttr3 }
-                  cardImage={ card.cardImage }
-                  cardRare={ card.cardRare }
-                  cardTrunfo={ card.cardTrunfo }
+                  cardName={ trunfo.cardName }
+                  cardDescription={ trunfo.cardDescription }
+                  cardAttr1={ trunfo.cardAttr1 }
+                  cardAttr2={ trunfo.cardAttr2 }
+                  cardAttr3={ trunfo.cardAttr3 }
+                  cardImage={ trunfo.cardImage }
+                  cardRare={ trunfo.cardRare }
+                  cardTrunfo={ trunfo.cardTrunfo }
                 />
                 <input
                   type="button"
                   value="Excluir"
                   data-testid="delete-button"
-                  onClick={ () => this.handleClickDelete(card.cardName) }
+                  onClick={ () => this.handleClickDelete(trunfo.cardName) }
                 />
               </div>
-            ))}
+            ))
+            : deck
+              .filter((card) => (rareFilter === 'todas'
+                ? true : card.cardRare === rareFilter))
+              .filter((card) => card.cardName.includes(nameFilter))
+              .map((card) => (
+                <div key={ card.cardName }>
+                  <Card
+                    cardName={ card.cardName }
+                    cardDescription={ card.cardDescription }
+                    cardAttr1={ card.cardAttr1 }
+                    cardAttr2={ card.cardAttr2 }
+                    cardAttr3={ card.cardAttr3 }
+                    cardImage={ card.cardImage }
+                    cardRare={ card.cardRare }
+                    cardTrunfo={ card.cardTrunfo }
+                  />
+                  <input
+                    type="button"
+                    value="Excluir"
+                    data-testid="delete-button"
+                    onClick={ () => this.handleClickDelete(card.cardName) }
+                  />
+                </div>
+              ))}
         </div>
       </div>
     );
