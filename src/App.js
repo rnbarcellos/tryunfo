@@ -16,6 +16,7 @@ class App extends React.Component {
     deck: [],
     nameFilter: '',
     rareFilter: 'todas',
+    trunfoFilter: false,
   };
 
   handleChange = ({ target }) => {
@@ -85,6 +86,7 @@ class App extends React.Component {
       deck,
       nameFilter,
       rareFilter,
+      trunfoFilter,
     } = this.state;
 
     const sumAttribute = 210;
@@ -136,12 +138,14 @@ class App extends React.Component {
           nameFilter={ nameFilter }
           rareFilter={ rareFilter }
           onInputChange={ this.handleChange }
+          trunfoFilter={ trunfoFilter }
         />
         <div className="card-list">
           {deck
             .filter((card) => (rareFilter === 'todas'
               ? true : card.cardRare === rareFilter))
             .filter((card) => card.cardName.includes(nameFilter))
+            .filter((card) => card.cardTrunfo === trunfoFilter)
             .map((card) => (
               <div key={ card.cardName }>
                 <Card

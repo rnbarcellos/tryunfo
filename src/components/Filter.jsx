@@ -7,6 +7,7 @@ class Filter extends Component {
       onInputChange,
       nameFilter,
       rareFilter,
+      trunfoFilter,
     } = this.props;
 
     return (
@@ -19,18 +20,31 @@ class Filter extends Component {
           onChange={ onInputChange }
           name="nameFilter"
           placeholder="Digite uma carta"
+          disabled={ trunfoFilter }
         />
         <select
           data-testid="rare-filter"
           value={ rareFilter }
           onChange={ onInputChange }
           name="rareFilter"
+          disabled={ trunfoFilter }
         >
           <option defaultValue="todas">todas</option>
           <option>normal</option>
           <option>raro</option>
           <option>muito raro</option>
         </select>
+        <label htmlFor="trunfo-filter">
+          Super Trybe Trunfo
+          <input
+            type="checkbox"
+            name="trunfoFilter"
+            data-testid="trunfo-filter"
+            id="trunfo-filter"
+            checked={ trunfoFilter }
+            onChange={ onInputChange }
+          />
+        </label>
       </fieldset>
     );
   }
@@ -40,6 +54,7 @@ Filter.propTypes = {
   onInputChange: PropTypes.string,
   rareFilter: PropTypes.string,
   nameFilter: PropTypes.string,
+  trunfoFilter: PropTypes.bool,
 }.isRequired;
 
 export default Filter;
